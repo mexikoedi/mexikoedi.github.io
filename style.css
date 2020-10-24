@@ -1,0 +1,15 @@
+body {font-family:Verdana;background-color:black;}
+
+h1 {font-size:18pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-bottom:0pt;}
+
+h2 {font-size:18pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
+
+p {text-align:center;}
+
+span {font-weight:bold;}
+
+a {color:white;}
+
+footer {color:white;text-align:center;margin-top:40pt;}
+
+.style {color:blue;}

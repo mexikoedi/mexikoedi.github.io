@@ -8,9 +8,13 @@ h3 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-c
 
 h4 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
 
+h5 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
+
 p {text-align:center;}
 
 span {font-weight:bold;}
+
+strong {color:white;line-height:1.5;}
 
 a {color:white;text-decoration:none;line-height:1.5;}
 

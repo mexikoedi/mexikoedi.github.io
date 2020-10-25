@@ -2,13 +2,7 @@ body {font-family:Verdana;background-color:black;}
 
 h1 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-bottom:0pt;}
 
-h2 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
-
-h3 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
-
-h4 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
-
-h5 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
+h2, h3, h4, h5 {font-size:20pt;color:white;background-color:blue;border-style:solid;border-color:#00008b;text-align:center;margin-top:40pt;}
 
 p {text-align:center;}
 

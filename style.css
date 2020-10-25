@@ -14,10 +14,10 @@ p {text-align:center;}
 
 span {font-weight:bold;}
 
-strong {color:white;line-height:1.5;}
-
 a {color:white;text-decoration:none;line-height:1.5;}
 
 footer {color:white;text-align:center;margin-top:40pt;}
 
-.style {color:blue;font-size:15pt;}
+.style1 {color:white;line-height:1.5;}
+
+.style2 {color:blue;font-size:15pt;}

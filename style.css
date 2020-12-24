@@ -22,6 +22,8 @@ footer {color:white;text-align:center;margin-top:40pt;}
 
 .middle {vertical-align:middle;}
 
+.borderless {border-style:none;}
+
 a:visited {color:#808080;}
 
 a:hover {background-color:#10617a;}

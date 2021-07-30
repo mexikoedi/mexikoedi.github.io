@@ -11,7 +11,7 @@ jobs:
     - name: HTML5/CSS Check
       uses: Cyb3r-Jak3/html5validator-action
       with:
-        root: workspace
+        root:  /mexikoedi.github.io
         format: json
         log_level: INFO
         css: true

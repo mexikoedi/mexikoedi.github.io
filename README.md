@@ -8,7 +8,7 @@ This is a simple website which I programmed to learn a bit more about HTML, CSS 
 Feel free to add a pull request or an issue. I might learn something from it because I am still learning.  
   
 
-**Every asset which is used here was made by mexikoedi.** test
+**Every asset which is used here was made by mexikoedi.**
 
 Thanks to [Slifer808](https://steamcommunity.com/profiles/76561198347469960) and [demarvLP](https://steamcommunity.com/profiles/76561198918850698) for the help with the assets.
 

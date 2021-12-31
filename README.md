@@ -12,6 +12,6 @@ Feel free to add a pull request or an issue. I might learn something from it bec
 
 Thanks to [Slifer808](https://steamcommunity.com/profiles/76561198347469960) and [demarvLP](https://steamcommunity.com/profiles/76561198918850698) for the help with the assets.
 
-© 2020-2021 mexikoedi
+© 2020-2022 mexikoedi
 
 All rights reserved.

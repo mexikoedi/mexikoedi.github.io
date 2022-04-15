@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.1
+    - uses: actions/checkout@v3.0.0
     - name: HTML5/CSS Check
-      uses: Cyb3r-Jak3/html5validator-action@main
+      uses: Cyb3r-Jak3/html5validator-action@master
       with:
         root: ./
         css: true

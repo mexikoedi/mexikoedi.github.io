@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.0.1
     - name: HTML5/CSS Check
-      uses: Cyb3r-Jak3/html5validator-action@master
+      uses: Cyb3r-Jak3/html5validator-action@main
       with:
         root: ./
         css: true

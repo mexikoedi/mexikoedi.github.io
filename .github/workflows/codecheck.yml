@@ -13,5 +13,4 @@ jobs:
       with:
         root: ./
         css: true
-        skip_git_check: true
         log_level: INFO

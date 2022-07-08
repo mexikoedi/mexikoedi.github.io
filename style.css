@@ -35,6 +35,10 @@
   color: white;
 }
 
+.navbar a:visited {
+  color: white;
+}
+
 .navbar a:hover {
   background-color: #00008b;
   color: white;

@@ -107,6 +107,10 @@ a {
 	text-decoration: underline;
 }
 
+#clean:hover {
+	background-color: transparent;
+}
+
 div {
 	text-align: center;
 }

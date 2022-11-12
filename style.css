@@ -107,7 +107,31 @@ a {
 	text-decoration: underline;
 }
 
-#clean:hover {
+#clean1:hover {
+	background-color: transparent;
+}
+
+#clean2:hover {
+	background-color: transparent;
+}
+
+#clean3:hover {
+	background-color: transparent;
+}
+
+#clean4:hover {
+	background-color: transparent;
+}
+
+#clean5:hover {
+	background-color: transparent;
+}
+
+#clean6:hover {
+	background-color: transparent;
+}
+
+#clean7:hover {
 	background-color: transparent;
 }
 

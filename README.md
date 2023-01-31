@@ -10,6 +10,6 @@ Feel free to add pull request or issues because I am still learning.
 
 Thanks to [Slifer808](https://steamcommunity.com/profiles/76561198347469960) and [demarvLP](https://steamcommunity.com/profiles/76561198918850698) for the help with the assets.
 
-© 2020-2022 mexikoedi
+© 2020-2023 mexikoedi
 
 All rights reserved.

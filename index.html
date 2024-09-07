@@ -344,7 +344,7 @@
 		</section>
 
 		<footer class="text-md-center py-4" aria-label="Footer with copyright information">
-			<p>&copy; 2020-<script async>document.write(new Date().getFullYear())</script> mexikoedi. All rights reserved.</p>
+			<p>&copy; 2020-<span id="currentYear"></span> mexikoedi. All rights reserved.</p>
 		</footer>
 
 		<!-- bootstrap import and scrolling listener for navbar -->
@@ -366,6 +366,11 @@
 
 				window.addEventListener('touchmove', function () {
 				}, { passive: true });
+			});
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				document.getElementById('currentYear').textContent = new Date().getFullYear();
 			});
 		</script>
 	</body>

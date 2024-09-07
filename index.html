@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Saturday, September 07th, 2024, 07:15 pm">
+		<meta name="revised" content="Saturday, September 07th, 2024, 07:30 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -347,7 +347,7 @@
 			<p>&copy; 2020-<span id="currentYear"></span> mexikoedi. All rights reserved.</p>
 		</footer>
 
-		<!-- bootstrap import, scrolling listener for navbar and current year -->
+		<!-- bootstrap import, scrolling/click listener for navbar and current year -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
@@ -367,6 +367,19 @@
 				window.addEventListener('wheel', function () { }, { passive: true });
 				window.addEventListener('touchstart', function () { }, { passive: true });
 				window.addEventListener('touchmove', function () { }, { passive: true });
+				var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+				var navbarToggler = document.querySelector('.navbar-toggler');
+
+				navLinks.forEach(function (link) {
+					link.addEventListener('click', function () {
+						var navbarCollapse = document.getElementById('navbarNav');
+
+						if (navbarCollapse.classList.contains('show')) {
+							navbarToggler.click();
+						}
+					});
+				});
+
 				document.getElementById('currentYear').textContent = new Date().getFullYear();
 			});
 		</script>

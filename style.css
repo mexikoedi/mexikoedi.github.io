@@ -2,6 +2,7 @@
 	font-family: Montserrat;
 	font-weight: 700;
 	src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6WXh0pg.woff2) format('woff2');
+	font-display: swap;
 }
 
 html {

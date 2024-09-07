@@ -13,11 +13,7 @@ html {
 body {
 	font-family: 'Montserrat', sans-serif;
 	color: #343a40;
-	background: -webkit-linear-gradient(100deg, #5757fb, #f8f9fa); /* Safari 5.1+, Chrome 10+ */
-    background: -moz-linear-gradient(100deg, #5757fb, #f8f9fa); /* FF 3.6+ */
-    background: -o-linear-gradient(100deg, #5757fb, #f8f9fa); /* Opera 11.10 */
-    background: -ms-linear-gradient(100deg, #5757fb, #f8f9fa); /* IE10 */
-    background: linear-gradient(100deg, #5757fb, #f8f9fa); /* the standard */
+    background: linear-gradient(100deg, #5757fb, #f8f9fa);
 	background-size: 200% 200%;
 	animation: gradientAnimation 60s ease infinite;
 }

@@ -344,7 +344,7 @@
 		</section>
 
 		<footer class="text-md-center py-4" aria-label="Footer with copyright information">
-			<p>&copy; 2020-<script>document.write(new Date().getFullYear())</script> mexikoedi. All rights reserved.</p>
+			<p>&copy; 2020-<script async>document.write(new Date().getFullYear())</script> mexikoedi. All rights reserved.</p>
 		</footer>
 
 		<!-- bootstrap import and scrolling listener for navbar -->
@@ -359,6 +359,12 @@
 				}, { passive: true });
 
 				window.addEventListener('wheel', function () {
+				}, { passive: true });
+
+				window.addEventListener('touchstart', function () {
+				}, { passive: true });
+
+				window.addEventListener('touchmove', function () {
 				}, { passive: true });
 			});
 		</script>

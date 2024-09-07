@@ -353,9 +353,13 @@
 			document.addEventListener('DOMContentLoaded', function () {
 				var scrollSpy = new bootstrap.ScrollSpy(document.body, {
 					target: '#navbarNav'
-				}, {
-					passive: true
 				});
+
+				window.addEventListener('scroll', function () {
+				}, { passive: true });
+
+				window.addEventListener('wheel', function () {
+				}, { passive: true });
 			});
 		</script>
 	</body>

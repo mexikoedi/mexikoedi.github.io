@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Saturday, September 07th, 2024, 07:30 pm">
+		<meta name="revised" content="Saturday, September 07th, 2024, 07:45 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -362,23 +362,21 @@
 				});
 
 				observer.observe(iframe);
-				var scrollSpy = new bootstrap.ScrollSpy(document.body, { target: '#navbarNav' });
+				const scrollSpy = new bootstrap.ScrollSpy(document.body, { target: '#navbarNav' });
 				window.addEventListener('scroll', function () { }, { passive: true });
 				window.addEventListener('wheel', function () { }, { passive: true });
 				window.addEventListener('touchstart', function () { }, { passive: true });
 				window.addEventListener('touchmove', function () { }, { passive: true });
-				var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-				var navbarToggler = document.querySelector('.navbar-toggler');
-
-				navLinks.forEach(function (link) {
-					link.addEventListener('click', function () {
-						var navbarCollapse = document.getElementById('navbarNav');
-
-						if (navbarCollapse.classList.contains('show')) {
-							navbarToggler.click();
-						}
-					});
-				});
+				const navLinks = document.querySelectorAll('.nav-item')
+				const menuToggle = document.getElementById('navbarNav')
+				const bsCollapse = bootstrap.Collapse.getOrCreateInstance(menuToggle, { toggle: false })
+				navLinks.forEach((link) => {
+					if (menuToggle.classList.contains('show')) {
+						link.addEventListener('click', () => {
+							bsCollapse.toggle()
+						})
+					}
+				})
 
 				document.getElementById('currentYear').textContent = new Date().getFullYear();
 			});

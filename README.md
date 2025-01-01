@@ -2,7 +2,7 @@
 
 My portfolio: https://mexikoedi.github.io
 
-This is my website which I programmed to learn a bit more about HTML, CSS and websites. This was also made to list all my creations in one place and to be used as a portfolio.
+This is my website which I programmed to learn a bit more about HTML, CSS, Bootstrap and websites. This was also made to list all my creations in one place and to be used as a portfolio.
 
 Feel free to add pull request or issues because I am still learning.  
  

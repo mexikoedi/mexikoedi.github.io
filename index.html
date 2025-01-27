@@ -3,8 +3,9 @@
 	<head>
 		<!-- important css, bootstrap, charset, verification and url information tags -->
 		<link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="style.css"></noscript>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    	<noscript><link rel="stylesheet" href="style.css"></noscript>
+    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" media="print" onload="this.media='all'" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   	 	<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></noscript>
 		<meta charset="UTF-8">
 		<meta name="google-site-verification" content="Gz0gnwoHGcAEgXIpi2nzwwhtV46NHROm-aO45WiexuU">
 		<meta name="msvalidate.01" content="63D7634B588FF70C29D4E71C809E926A">
@@ -33,7 +34,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Monday, January 28th, 2025, 00:40 pm">
+		<meta name="revised" content="Monday, January 28th, 2025, 00:55 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -108,6 +109,9 @@
 		<meta name="dc.keywords" content="mexikoedi, demarvLP, Slifer808, Gmod, Garry's Mod, TTT, TTT2, Trouble in Terroist Town, Sandbox, SB, Steam Workshop, Addons, GitHub, Code, Games, Database, Website, YouTube">
 		<meta name="dc.creator" content="mexikoedi">
 		<meta name="dc.publisher" content="mexikoedi">
+
+		<!-- preload largest contentful paint image -->
+		<link rel="preload" href="assets/icon_mexikoedi.svg" as="image" type="image/svg+xml">
 	</head>
 
 	<body>
@@ -152,7 +156,7 @@
 		<section id="home" class="text-md-center my-5 p-0" aria-label="Home section showcasing mexikoedi and a short introduction about the content on this website">
 			<div class="container">
 				<h1 class="display-4 p-5">mexikoedi</h1>
-				<img src="assets/icon_mexikoedi.svg" alt="mexikoedi icon" class="img-fluid img-size-large rounded-circle" width="250" height="250" loading="lazy">
+				<img src="assets/icon_mexikoedi.svg" alt="mexikoedi icon" class="img-fluid img-size-large rounded-circle" width="250" height="250">
 				<p class="lead mt-5">My GitHub and Steam Workshop work is listed here on this website.</p>
 			</div>
 		</section>
@@ -374,7 +378,7 @@
 		</footer>
 
 		<!-- bootstrap import, scrolling/click listener for navbar, cookie handling for the video player and the current year -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
 				const scrollSpy = new bootstrap.ScrollSpy(document.body, { target: '#navbarNav' });

@@ -42,7 +42,7 @@ jobs:
       with:
           patterns: |
             -**/*.svg
-          input: reports/scan.sarif
+          input: reports/.sastscan.baseline 
           output: reports/filtered_scan.sarif
 
     # Upload SARIF file

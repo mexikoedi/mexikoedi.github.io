@@ -36,7 +36,17 @@ jobs:
         # type: credscan,java
         # type: python
 
-    - name: Upload report
+    # Filter SARIF to exclude alerts from SVG files
+    - name: Filter SARIF
+      uses: advanced-security/filter-sarif@v1
+      with:
+          patterns: |
+            -**/*.svg
+          input: reports/scan.sarif
+          output: reports/filtered_scan.sarif
+
+    # Upload SARIF file
+    - name: Upload filtered SARIF report
       uses: github/codeql-action/upload-sarif@v3
       with:
-        sarif_file: reports
+          sarif_file: reports/filtered_scan.sarif

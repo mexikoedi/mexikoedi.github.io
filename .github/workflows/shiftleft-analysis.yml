@@ -28,25 +28,31 @@ jobs:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SCAN_AUTO_BUILD: true
-        # Exclude all SVG files from the scan process
-        SCAN_EXCLUDE: "*.svg"
       with:
         output: reports
         # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
         # type: credscan,java
         # type: python
+        
+    # Ensure reports directory exists
+    - name: Ensure reports directory exists
+      run: mkdir -p reports
+
+    # Set permissions for reports directory
+    - name: Set permissions for reports directory
+      run: chmod -R 777 reports
 
     # Filter SARIF to exclude alerts from SVG files
     - name: Filter SARIF
       uses: advanced-security/filter-sarif@v1
       with:
-          patterns: |
-            -**/*.svg
-          input: reports/.sastscan.baseline 
-          output: reports/filtered_scan.sarif
+        patterns: |
+          -**/*.svg
+        input: reports/.sastscan.baseline
+        output: reports/filtered_scan.sarif
 
-    # Upload SARIF file
+    # Upload filtered SARIF report
     - name: Upload filtered SARIF report
       uses: github/codeql-action/upload-sarif@v3
       with:
-          sarif_file: reports/filtered_scan.sarif
+        sarif_file: reports/filtered_scan.sarif

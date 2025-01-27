@@ -28,6 +28,8 @@ jobs:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SCAN_AUTO_BUILD: true
+        # Exclude all SVG files from the scan process
+        SCAN_EXCLUDE: "*.svg"
       with:
         output: reports
         # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type

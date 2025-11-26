@@ -6,6 +6,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # GitHub token permissions
+    permissions:
+      contents: read
+
     steps:
     - uses: actions/checkout@v6.0.0
     - name: HTML5/CSS Check

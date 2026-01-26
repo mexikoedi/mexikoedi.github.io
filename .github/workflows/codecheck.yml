@@ -2,6 +2,9 @@ name: HTML5/CSS Check
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:

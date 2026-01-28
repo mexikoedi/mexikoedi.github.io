@@ -1,8 +1,9 @@
 # mexikoedi.github.io
 
-My portfolio: https://mexikoedi.github.io
-
-This is my website which I programmed to learn a bit more about websites and HTML, CSS, Bootstrap and JavaScript. This was also made to list all my creations in one place and to be used as a portfolio.
+## What is this?
+This is my website which I programmed to learn a bit more about websites and HTML, CSS, Bootstrap and JavaScript. <br>
+This was also made to list all my creations in one place and to be used as a portfolio. <br>
+You can reach it with this URL: https://mexikoedi.github.io/
 
 Feel free to add pull requests or issues because I am still learning.  
  

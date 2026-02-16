@@ -415,7 +415,6 @@
 					}
 
 					let forcedActive = null;
-					let forcedTimer = null;
 					const setActive = id => navAnchors.forEach(a => a.classList.toggle('active', (a.getAttribute('href') || '').slice(1) === id));
 
 					function updateActiveByCenter() {
@@ -476,17 +475,11 @@
 
 						a.addEventListener('click', () => {
 							forcedActive = id;
-
-							if (forcedTimer) {
-								clearTimeout(forcedTimer);
-							}
-
-							forcedTimer = setTimeout(() => { forcedActive = null; forcedTimer = null; updateActiveByCenter(); }, 700);
 							setActive(id);
 						});
 					});
 
-					const cancelForced = () => { if (forcedTimer) { clearTimeout(forcedTimer); forcedTimer = null; } forcedActive = null; };
+					const cancelForced = () => { forcedActive = null; };
 					window.addEventListener('wheel', cancelForced, { passive: true });
 					window.addEventListener('touchstart', cancelForced, { passive: true });
 					window.addEventListener('touchmove', cancelForced, { passive: true });
@@ -497,12 +490,6 @@
 
 						if (id) {
 							forcedActive = id;
-
-							if (forcedTimer) {
-								clearTimeout(forcedTimer);
-							}
-
-							forcedTimer = setTimeout(() => { forcedActive = null; forcedTimer = null; updateActiveByCenter(); }, 700);
 							setActive(id);
 						}
 					});

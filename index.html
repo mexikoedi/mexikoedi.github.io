@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Saturday, February 14th, 2026, 10:15 pm">
+		<meta name="revised" content="Monday, February 16th, 2026, 10:05 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -403,6 +403,63 @@
 						})
 					}
 				})
+
+				try {
+					const navAnchors = document.querySelectorAll('.navbar-nav .nav-link');
+					const sections = Array.from(document.querySelectorAll('section[id]'));
+					const lastSectionId = sections.length ? sections[sections.length - 1].id : null;
+
+					try {
+						scrollSpy?.dispose?.();
+					} catch (e) {
+					}
+
+					const setActive = id => navAnchors.forEach(a => a.classList.toggle('active', (a.getAttribute('href') || '').slice(1) === id));
+
+					function updateActiveByCenter() {
+						if (!sections.length) {
+							return;
+						}
+
+						if (window.pageYOffset <= 5) {
+							setActive(sections[0].id);
+
+							return;
+						}
+
+						const center = window.innerHeight / 2;
+						let bestId = null;
+						let bestDist = Infinity;
+
+						for (const s of sections) {
+							const r = s.getBoundingClientRect();
+							const mid = (r.top + r.bottom) / 2;
+							const dist = Math.abs(mid - center);
+
+							if (dist < bestDist) {
+								bestDist = dist; bestId = s.id;
+							}
+						}
+
+						if ((window.innerHeight + window.pageYOffset) >= (document.documentElement.scrollHeight - 5) && lastSectionId) {
+							bestId = lastSectionId;
+						}
+
+						if (bestId) {
+							setActive(bestId);
+						}
+					}
+
+					const observer = new IntersectionObserver(() => updateActiveByCenter(), { threshold: 0 });
+					sections.forEach(s => observer.observe(s));
+					let rafId = null;
+					const tick = () => { updateActiveByCenter(); rafId = null; };
+					const onScrollOrResize = () => { if (!rafId) rafId = requestAnimationFrame(tick); };
+					window.addEventListener('scroll', onScrollOrResize, { passive: true });
+					window.addEventListener('resize', onScrollOrResize, { passive: true });
+					updateActiveByCenter();
+				} catch (e) {
+				}
 
 				const videoContainer = document.getElementById('video-container');
 				const cookieBanner = document.getElementById('cookie-banner');

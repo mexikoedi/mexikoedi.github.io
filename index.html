@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Monday, February 16th, 2026, 10:50 pm">
+		<meta name="revised" content="Monday, February 16th, 2026, 11:10 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -500,7 +500,11 @@
 								const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 								try {
-									target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+									const nav = document.querySelector('.navbar.sticky-top') || document.querySelector('.navbar');
+									const navHeight = nav ? nav.offsetHeight : 0;
+									const rectTop = target.getBoundingClientRect().top + window.pageYOffset;
+									const scrollTo = Math.max(0, rectTop - navHeight - 12);
+									window.scrollTo({ top: scrollTo, behavior: prefersReduced ? 'auto' : 'smooth' });
 								} catch (e) {
 									target.scrollIntoView();
 								}

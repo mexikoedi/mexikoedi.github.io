@@ -414,10 +414,18 @@
 					} catch (e) {
 					}
 
+					let forcedActive = null;
+					let forcedTimer = null;
 					const setActive = id => navAnchors.forEach(a => a.classList.toggle('active', (a.getAttribute('href') || '').slice(1) === id));
 
 					function updateActiveByCenter() {
 						if (!sections.length) {
+							return;
+						}
+
+						if (forcedActive) {
+							setActive(forcedActive);
+
 							return;
 						}
 
@@ -437,7 +445,8 @@
 							const dist = Math.abs(mid - center);
 
 							if (dist < bestDist) {
-								bestDist = dist; bestId = s.id;
+								bestDist = dist;
+								bestId = s.id;
 							}
 						}
 
@@ -466,12 +475,38 @@
 						}
 
 						a.addEventListener('click', () => {
+							forcedActive = id;
+
+							if (forcedTimer) {
+								clearTimeout(forcedTimer);
+							}
+
+							forcedTimer = setTimeout(() => { forcedActive = null; forcedTimer = null; updateActiveByCenter(); }, 700);
 							setActive(id);
-							setTimeout(updateActiveByCenter, 120);
 						});
 					});
 
-					window.addEventListener('hashchange', () => setTimeout(updateActiveByCenter, 50));
+					const cancelForced = () => { if (forcedTimer) { clearTimeout(forcedTimer); forcedTimer = null; } forcedActive = null; };
+					window.addEventListener('wheel', cancelForced, { passive: true });
+					window.addEventListener('touchstart', cancelForced, { passive: true });
+					window.addEventListener('touchmove', cancelForced, { passive: true });
+					window.addEventListener('keydown', cancelForced, { passive: true });
+
+					window.addEventListener('hashchange', () => {
+						const id = location.hash ? location.hash.slice(1) : null;
+
+						if (id) {
+							forcedActive = id;
+
+							if (forcedTimer) {
+								clearTimeout(forcedTimer);
+							}
+
+							forcedTimer = setTimeout(() => { forcedActive = null; forcedTimer = null; updateActiveByCenter(); }, 700);
+							setActive(id);
+						}
+					});
+
 					updateActiveByCenter();
 				} catch (e) {
 				}

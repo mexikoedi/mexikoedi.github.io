@@ -457,6 +457,21 @@
 					const onScrollOrResize = () => { if (!rafId) rafId = requestAnimationFrame(tick); };
 					window.addEventListener('scroll', onScrollOrResize, { passive: true });
 					window.addEventListener('resize', onScrollOrResize, { passive: true });
+
+					navAnchors.forEach(a => {
+						const id = (a.getAttribute('href') || '').slice(1);
+
+						if (!id) {
+							return;
+						}
+
+						a.addEventListener('click', () => {
+							setActive(id);
+							setTimeout(updateActiveByCenter, 120);
+						});
+					});
+
+					window.addEventListener('hashchange', () => setTimeout(updateActiveByCenter, 50));
 					updateActiveByCenter();
 				} catch (e) {
 				}

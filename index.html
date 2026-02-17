@@ -387,6 +387,10 @@
 		<script defer src="js/bootstrap.min.js"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
+				const PIN_RELEASE_DISTANCE = 160;
+				const CLICK_LOCK_END_DISTANCE = 24;
+				const CLICK_SCROLL_TIMEOUT_MS = 1200;
+				const KEYBOARD_SCROLL_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
 				const navbar = document.querySelector('.navbar');
 				const menuToggle = document.getElementById('navbarNav');
 				const navLinks = Array.from(document.querySelectorAll('#navbarNav .nav-link[href^="#"]'));
@@ -399,9 +403,9 @@
 
 				function updateNavbarHeight() {
 					const currentNavbarHeight = navbar ? navbar.offsetHeight : 0;
-					const isCollapsedMenuOpen = menuToggle && menuToggle.classList.contains('show');
+					const menuIsOpen = isCollapsedMenuOpen();
 
-					if (!isCollapsedMenuOpen && currentNavbarHeight > 0) {
+					if (!menuIsOpen && currentNavbarHeight > 0) {
 						navbarBaseHeight = currentNavbarHeight;
 					}
 
@@ -427,17 +431,15 @@
 					}
 
 					if (clickPinnedTargetId) {
-						const isCollapsedMenuOpen = menuToggle && menuToggle.classList.contains('show');
 						const hasNoUserScrollIntentYet = !hasUserScrollIntentSinceClick;
 
-						if (isCollapsedMenuOpen || hasNoUserScrollIntentYet) {
+						if (isCollapsedMenuOpen() || hasNoUserScrollIntentYet) {
 							return clickPinnedTargetId;
 						}
 
 						const pinnedDistance = Math.abs(window.scrollY - clickPinnedTargetTop);
-						const pinnedReleaseDistance = 160;
 
-						if (pinnedDistance <= pinnedReleaseDistance) {
+						if (pinnedDistance <= PIN_RELEASE_DISTANCE) {
 							return clickPinnedTargetId;
 						}
 
@@ -488,6 +490,19 @@
 				let clickPinnedTargetTop = 0;
 				let hasUserScrollIntentSinceClick = true;
 
+				function isCollapsedMenuOpen() {
+					return Boolean(menuToggle && menuToggle.classList.contains('show'));
+				}
+
+				function syncPinnedTargetToCurrentScroll() {
+					if (!clickPinnedTargetId) {
+						return;
+					}
+
+					clickPinnedTargetTop = window.scrollY;
+					setActiveLink(clickPinnedTargetId);
+				}
+
 				function releasePinnedTarget() {
 					clickPinnedTargetId = null;
 					clickPinnedTargetTop = 0;
@@ -523,7 +538,7 @@
 					clickScrollTimeoutId = window.setTimeout(() => {
 						clickPinnedTargetTop = window.scrollY;
 						clearClickScrollLock();
-					}, 1200);
+					}, CLICK_SCROLL_TIMEOUT_MS);
 				}
 
 				function scrollToSectionById(targetId) {
@@ -558,7 +573,7 @@
 						if (clickScrollTargetId) {
 							setActiveLink(clickScrollTargetId);
 
-							if (Math.abs(window.scrollY - clickScrollTargetTop) <= 24) {
+							if (Math.abs(window.scrollY - clickScrollTargetTop) <= CLICK_LOCK_END_DISTANCE) {
 								clickPinnedTargetTop = window.scrollY;
 								clearClickScrollLock();
 								updateActiveNavigation();
@@ -579,7 +594,7 @@
 							scrollToSectionById(targetId);
 						};
 
-						if (menuToggle.classList.contains('show')) {
+						if (isCollapsedMenuOpen()) {
 							menuToggle.addEventListener('hidden.bs.collapse', scrollToTarget, { once: true });
 							bsCollapse.hide();
 						} else {
@@ -589,18 +604,11 @@
 				});
 
 				menuToggle.addEventListener('shown.bs.collapse', () => {
-					if (clickPinnedTargetId) {
-						clickPinnedTargetTop = window.scrollY;
-						setActiveLink(clickPinnedTargetId);
-					}
+					syncPinnedTargetToCurrentScroll();
 				});
 
 				menuToggle.addEventListener('hidden.bs.collapse', () => {
-					if (clickPinnedTargetId) {
-						clickPinnedTargetTop = window.scrollY;
-						setActiveLink(clickPinnedTargetId);
-					}
-
+					syncPinnedTargetToCurrentScroll();
 					onScrollOrResize();
 				});
 
@@ -611,7 +619,7 @@
 				window.addEventListener('touchmove', markUserScrollIntent, { passive: true });
 
 				window.addEventListener('keydown', function (event) {
-					if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+					if (KEYBOARD_SCROLL_KEYS.includes(event.key)) {
 						markUserScrollIntent();
 					}
 				});

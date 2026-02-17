@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Tuesday, February 17th, 2026, 04:25 pm">
+		<meta name="revised" content="Tuesday, February 17th, 2026, 04:50 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -394,7 +394,6 @@
 				const sections = navLinks
 					.map((link) => document.querySelector(link.getAttribute('href')))
 					.filter((section) => section !== null);
-
 				let navbarHeight = navbar ? navbar.offsetHeight : 0;
 
 				function updateNavbarHeight() {
@@ -456,6 +455,53 @@
 				}
 
 				let isTicking = false;
+				let clickScrollTargetId = null;
+				let clickScrollTargetTop = 0;
+				let clickScrollTimeoutId = null;
+
+				function clearClickScrollLock() {
+					clickScrollTargetId = null;
+					clickScrollTargetTop = 0;
+
+					if (clickScrollTimeoutId !== null) {
+						window.clearTimeout(clickScrollTimeoutId);
+						clickScrollTimeoutId = null;
+					}
+				}
+
+				function startClickScrollLock(targetId, targetTop) {
+					clickScrollTargetId = targetId;
+					clickScrollTargetTop = targetTop;
+					setActiveLink(targetId);
+
+					if (clickScrollTimeoutId !== null) {
+						window.clearTimeout(clickScrollTimeoutId);
+					}
+
+					clickScrollTimeoutId = window.setTimeout(() => {
+						clearClickScrollLock();
+						updateActiveNavigation();
+					}, 1200);
+				}
+
+				function scrollToSectionById(targetId) {
+					const section = document.getElementById(targetId);
+
+					if (!section) {
+						return;
+					}
+
+					updateNavbarHeight();
+					const heading = section.querySelector('h1, h2, h3, h4, h5, h6');
+					const targetElement = heading || section;
+					const targetTop = Math.max(targetElement.offsetTop - navbarHeight - 8, 0);
+					startClickScrollLock(targetId, targetTop);
+					window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+					if (window.history && typeof window.history.pushState === 'function') {
+						window.history.pushState(null, '', `#${targetId}`);
+					}
+				}
 
 				function onScrollOrResize() {
 					if (isTicking) {
@@ -466,21 +512,36 @@
 
 					window.requestAnimationFrame(() => {
 						updateNavbarHeight();
-						updateActiveNavigation();
+
+						if (clickScrollTargetId) {
+							setActiveLink(clickScrollTargetId);
+
+							if (Math.abs(window.scrollY - clickScrollTargetTop) <= 2) {
+								clearClickScrollLock();
+								updateActiveNavigation();
+							}
+						} else {
+							updateActiveNavigation();
+						}
+
 						isTicking = false;
 					});
 				}
 
 				navLinks.forEach((link) => {
-					link.addEventListener('click', () => {
+					link.addEventListener('click', (event) => {
+						event.preventDefault();
 						const targetId = link.getAttribute('href').slice(1);
-						setActiveLink(targetId);
+						const scrollToTarget = () => {
+							scrollToSectionById(targetId);
+						};
 
 						if (menuToggle.classList.contains('show')) {
+							menuToggle.addEventListener('hidden.bs.collapse', scrollToTarget, { once: true });
 							bsCollapse.hide();
+						} else {
+							scrollToTarget();
 						}
-
-						window.requestAnimationFrame(updateActiveNavigation);
 					});
 				});
 

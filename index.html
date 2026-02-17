@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Tuesday, February 17th, 2026, 05:40 pm">
+		<meta name="revised" content="Tuesday, February 17th, 2026, 05:45 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -477,10 +477,6 @@
 					clickPinnedTargetTop = 0;
 				}
 
-				function handleUserScrollIntent() {
-					releasePinnedTarget();
-				}
-
 				function clearClickScrollLock() {
 					clickScrollTargetId = null;
 					clickScrollTargetTop = 0;
@@ -570,16 +566,9 @@
 
 				window.addEventListener('scroll', onScrollOrResize, { passive: true });
 				window.addEventListener('resize', onScrollOrResize, { passive: true });
-				window.addEventListener('wheel', handleUserScrollIntent, { passive: true });
+				window.addEventListener('wheel', function () { }, { passive: true });
 				window.addEventListener('touchstart', function () { }, { passive: true });
-				window.addEventListener('touchmove', handleUserScrollIntent, { passive: true });
-
-				window.addEventListener('keydown', function (event) {
-					if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
-						handleUserScrollIntent();
-					}
-				});
-
+				window.addEventListener('touchmove', function () { }, { passive: true });
 				window.addEventListener('load', onScrollOrResize);
 				onScrollOrResize();
 				const videoContainer = document.getElementById('video-container');

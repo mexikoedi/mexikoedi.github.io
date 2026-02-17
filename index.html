@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Tuesday, February 17th, 2026, 05:10 pm">
+		<meta name="revised" content="Tuesday, February 17th, 2026, 05:40 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -571,7 +571,7 @@
 				window.addEventListener('scroll', onScrollOrResize, { passive: true });
 				window.addEventListener('resize', onScrollOrResize, { passive: true });
 				window.addEventListener('wheel', handleUserScrollIntent, { passive: true });
-				window.addEventListener('touchstart', handleUserScrollIntent, { passive: true });
+				window.addEventListener('touchstart', function () { }, { passive: true });
 				window.addEventListener('touchmove', handleUserScrollIntent, { passive: true });
 
 				window.addEventListener('keydown', function (event) {

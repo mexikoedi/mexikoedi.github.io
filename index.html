@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Tuesday, February 17th, 2026, 05:00 pm">
+		<meta name="revised" content="Tuesday, February 17th, 2026, 05:10 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -420,13 +420,13 @@
 
 					if (clickPinnedTargetId) {
 						const pinnedDistance = Math.abs(window.scrollY - clickPinnedTargetTop);
+						const pinnedReleaseDistance = 96;
 
-						if (pinnedDistance <= 24) {
+						if (pinnedDistance <= pinnedReleaseDistance) {
 							return clickPinnedTargetId;
 						}
 
-						clickPinnedTargetId = null;
-						clickPinnedTargetTop = 0;
+						releasePinnedTarget();
 					}
 
 					const viewportHeight = window.innerHeight;
@@ -472,6 +472,15 @@
 				let clickPinnedTargetId = null;
 				let clickPinnedTargetTop = 0;
 
+				function releasePinnedTarget() {
+					clickPinnedTargetId = null;
+					clickPinnedTargetTop = 0;
+				}
+
+				function handleUserScrollIntent() {
+					releasePinnedTarget();
+				}
+
 				function clearClickScrollLock() {
 					clickScrollTargetId = null;
 					clickScrollTargetTop = 0;
@@ -495,7 +504,6 @@
 
 					clickScrollTimeoutId = window.setTimeout(() => {
 						clearClickScrollLock();
-						updateActiveNavigation();
 					}, 1200);
 				}
 
@@ -562,9 +570,16 @@
 
 				window.addEventListener('scroll', onScrollOrResize, { passive: true });
 				window.addEventListener('resize', onScrollOrResize, { passive: true });
-				window.addEventListener('wheel', function () { }, { passive: true });
-				window.addEventListener('touchstart', function () { }, { passive: true });
-				window.addEventListener('touchmove', function () { }, { passive: true });
+				window.addEventListener('wheel', handleUserScrollIntent, { passive: true });
+				window.addEventListener('touchstart', handleUserScrollIntent, { passive: true });
+				window.addEventListener('touchmove', handleUserScrollIntent, { passive: true });
+
+				window.addEventListener('keydown', function (event) {
+					if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+						handleUserScrollIntent();
+					}
+				});
+
 				window.addEventListener('load', onScrollOrResize);
 				onScrollOrResize();
 				const videoContainer = document.getElementById('video-container');

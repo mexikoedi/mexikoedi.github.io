@@ -32,7 +32,7 @@
 
 		<!-- organizational information tags -->
 		<meta name="date" content="2020-10-10T13:30:00+01:25">
-		<meta name="revised" content="Tuesday, February 17th, 2026, 05:55 pm">
+		<meta name="revised" content="Tuesday, February 17th, 2026, 06:05 pm">
 		<meta name="author" content="mexikoedi">
 		<meta name="creator" content="mexikoedi">
 		<meta name="owner" content="mexikoedi">
@@ -427,8 +427,14 @@
 					}
 
 					if (clickPinnedTargetId) {
+						const isCollapsedMenuOpen = menuToggle && menuToggle.classList.contains('show');
+
+						if (isCollapsedMenuOpen) {
+							return clickPinnedTargetId;
+						}
+
 						const pinnedDistance = Math.abs(window.scrollY - clickPinnedTargetTop);
-						const pinnedReleaseDistance = 96;
+						const pinnedReleaseDistance = 160;
 
 						if (pinnedDistance <= pinnedReleaseDistance) {
 							return clickPinnedTargetId;
@@ -571,6 +577,22 @@
 							scrollToTarget();
 						}
 					});
+				});
+
+				menuToggle.addEventListener('shown.bs.collapse', () => {
+					if (clickPinnedTargetId) {
+						clickPinnedTargetTop = window.scrollY;
+						setActiveLink(clickPinnedTargetId);
+					}
+				});
+
+				menuToggle.addEventListener('hidden.bs.collapse', () => {
+					if (clickPinnedTargetId) {
+						clickPinnedTargetTop = window.scrollY;
+						setActiveLink(clickPinnedTargetId);
+					}
+
+					onScrollOrResize();
 				});
 
 				window.addEventListener('scroll', onScrollOrResize, { passive: true });
